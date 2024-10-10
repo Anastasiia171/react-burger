@@ -1,14 +1,26 @@
 import React from 'react';
 import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components'; 
 import styles from './order-details.module.css'; 
+import { useSelector } from 'react-redux';
+import { RootState } from '../../services/store';
+
+
 const OrderDetails: React.FC = () => {
 
-  const orderNumber = '034536';
+  const { order, status } = useSelector((state: RootState) => state.order);
+
+  if (status === 'loading') {
+    return <p>Оформление заказа...</p>;
+  }
+
+  if (!order) {
+    return null; 
+  }
 
   return (
     <div className={styles.container}>
     
-      <p className="text text_type_digits-large">{orderNumber}</p>
+      <p className="text text_type_digits-large">{order.number}</p>
       <p className="text text_type_main-medium pt-8">идентификатор заказа</p>
 
       <div className={`${styles.icon} pt-15 pb-15`}>

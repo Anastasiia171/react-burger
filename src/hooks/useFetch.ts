@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Ingredient } from '../utils/types';
+import { API_URL } from '../utils/constants';
 
-const API_URL = 'https://norma.nomoreparties.space/api/ingredients';
+
 
 
  const useFetch = () => {

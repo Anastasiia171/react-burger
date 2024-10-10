@@ -1,14 +1,7 @@
 import React from 'react';
 import styles from './ingredient-details.module.css';
+import { Ingredient } from '../../utils/types';
 
-interface Ingredient {
-    name: string;
-    image_large: string;
-    calories: number;
-    proteins: number;
-    fat: number;
-    carbohydrates: number;
-}
 
 interface IngredientDetailsProps {
     ingredient: Ingredient;

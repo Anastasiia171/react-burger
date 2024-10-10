@@ -1,9 +1,7 @@
 .constructorContainer {
     display: flex;
     flex-direction: column;
-    align-items: center;
-  
-  
+    width: 100%; 
 }
 
 .ingredientsContainer {
@@ -24,6 +22,8 @@
 .footer {
     display: flex;
     justify-content: flex-end;
+    margin-top: auto;
+    margin-right: auto;
     gap: 40px;
     width: 100%;
     padding: 20px;

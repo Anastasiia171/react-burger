@@ -1,70 +1,90 @@
 import React, { useEffect, useState } from 'react';
-import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import {
+  Logo,
+  BurgerIcon,
+  ListIcon,
+  ProfileIcon,
+} from '@ya.praktikum/react-developer-burger-ui-components';
 import NavBarItem from './nav-bar-item/nav-bar-item';
 import styles from './app-header.module.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-type Tab = "Конструктор" | "Лента заказов" | "Личный кабинет";
+type Tab = 'Конструктор' | 'Лента заказов' | 'Личный кабинет';
 
 interface AppHeaderProps {
-    className?: string; 
-  }
-  
-  const AppHeader: React.FC<AppHeaderProps> = ({ className }) => {
-      const [isActive, setIsActive] = useState<Tab>('Конструктор');
+  className?: string;
+}
 
-      const navigate = useNavigate();
+const AppHeader: React.FC<AppHeaderProps> = ({ className }) => {
+  const [isActive, setIsActive] = useState<Tab>('Конструктор');
 
-      const location = useLocation();
+  const navigate = useNavigate();
 
-      useEffect(() => {
-          if (location.pathname.startsWith('/profile')) {
-              setIsActive("Личный кабинет");
-              
-          } else if (location.pathname.startsWith('/feed')) {
-              setIsActive("Лента заказов");
-          } else {
-              setIsActive("Конструктор");
-          }
-      }, [location.pathname]);
+  const location = useLocation();
 
-    return (
-        <header className={`pt-4 pb-4 ${styles.header}`}>
-            <div className={`${styles.container}`}>
-                <ul className={styles.navList}>
-                        <NavBarItem
-                            icon={<BurgerIcon type={isActive === "Конструктор" ? "primary" : "secondary"} />}
-                            text="Конструктор"
-                            isActive={isActive === "Конструктор"}
-                            setActive={() => {
-                                navigate('/');
-                            }}
-                        />
-                        <NavBarItem
-                            icon={<ListIcon type={isActive === "Лента заказов" ? "primary" : "secondary"} />}
-                            text="Лента заказов"
-                            isActive={isActive === "Лента заказов"}
-                            setActive={() => {
-                                navigate('/feed');
-                            }}
-                        />
-                    </ul>
-                <div className={`${styles.logo} `}>
-                    <Logo />
-                </div>
-                    <ul className={styles.navList} >
-                        <NavBarItem
-                            icon={<ProfileIcon type={isActive === "Личный кабинет" ? "primary" : "secondary"} />}
-                            text="Личный кабинет"
-                            isActive={isActive === "Личный кабинет"}
-                            setActive={() => {
-                                navigate('/profile');
-                            }}
-                        />
-                    </ul>
-            </div>
-        </header>
-    );
+  useEffect(() => {
+    if (location.pathname.startsWith('/profile')) {
+      setIsActive('Личный кабинет');
+    } else if (location.pathname.startsWith('/feed')) {
+      setIsActive('Лента заказов');
+    } else {
+      setIsActive('Конструктор');
+    }
+  }, [location.pathname]);
+
+  return (
+    <header className={`pt-4 pb-4 ${styles.header}`}>
+      <div className={`${styles.container}`}>
+        <ul className={styles.navList}>
+          <NavBarItem
+            icon={
+              <BurgerIcon
+                type={isActive === 'Конструктор' ? 'primary' : 'secondary'}
+              />
+            }
+            text="Конструктор"
+            isActive={isActive === 'Конструктор'}
+            setActive={() => {
+              navigate('/');
+            }}
+          />
+          <NavBarItem
+            icon={
+              <ListIcon
+                type={isActive === 'Лента заказов' ? 'primary' : 'secondary'}
+              />
+            }
+            text="Лента заказов"
+            isActive={isActive === 'Лента заказов'}
+            setActive={() => {
+              navigate('/feed');
+            }}
+          />
+        </ul>
+        <div
+          className={`${styles.logo}`}
+          onClick={() => navigate('/')}
+          style={{ cursor: 'pointer' }}
+        >
+          <Logo />
+        </div>
+        <ul className={styles.navList}>
+          <NavBarItem
+            icon={
+              <ProfileIcon
+                type={isActive === 'Личный кабинет' ? 'primary' : 'secondary'}
+              />
+            }
+            text="Личный кабинет"
+            isActive={isActive === 'Личный кабинет'}
+            setActive={() => {
+              navigate('/profile');
+            }}
+          />
+        </ul>
+      </div>
+    </header>
+  );
 };
 
 export default AppHeader;

@@ -9,3 +9,6 @@ export const REGISTER_URL = `${BASE_URL}/auth/register`;
 export const LOGOUT_URL = `${BASE_URL}/auth/logout`;
 export const TOKEN_URL = `${BASE_URL}/auth/token`;
 export const GET_USER = `${BASE_URL}/auth/user`;
+
+export const WS_ORDERS_URL = 'wss://norma.nomoreparties.space/orders/all';
+export const WS_USER_ORDERS_URL = 'wss://norma.nomoreparties.space/orders';

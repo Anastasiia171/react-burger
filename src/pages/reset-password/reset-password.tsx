@@ -4,7 +4,7 @@ import styles from './reset-password.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { RESET_PASSWORD } from '../../utils/constants';
 import { request } from '../../utils/apiUtils';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch,  } from '../../services/hooks';
 import { setPasswordResetRequested } from '../../services/auth-slice';
 
 const ResetPasswordPage: React.FC = () => { 
@@ -13,7 +13,7 @@ const ResetPasswordPage: React.FC = () => {
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState('');
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     
     const onCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCode(e.target.value);

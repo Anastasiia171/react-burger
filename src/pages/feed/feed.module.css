@@ -1,0 +1,36 @@
+.wrapper {
+  display: flex;
+  width: 1240px;
+  gap: 56px;
+}
+
+.orders {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 840px;
+  overflow-y: auto;
+}
+
+.orders::-webkit-scrollbar {
+  display: none;
+}
+
+.status {
+  display: flex;
+  gap: 140px;
+  margin-bottom: 60px;
+}
+
+.name {
+  margin-top: 0px;
+}
+
+.total,
+.totalToday {
+  text-shadow: 0px 4px 32px rgba(51, 51, 255, 1);
+}
+
+.ready {
+  color: #00cccc;
+}

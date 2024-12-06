@@ -1,7 +1,6 @@
 .wrapper {
     display: flex;
     gap: 60px;
-    
 }
 
 .navigation {
@@ -26,4 +25,8 @@
  .navigation, .content, .form {
     display: flex;
     flex-direction: column;
+ }
+
+ .buttons {
+    margin-top: 40px;
  }

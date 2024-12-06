@@ -1,0 +1,42 @@
+.wrapper {
+  width: 620px;
+  max-height: 716px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 40px;
+}
+
+.status {
+  color: #00cccc;
+}
+
+.ingredients {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 20px;
+  max-height: calc(4 * 88px);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.ingredients::-webkit-scrollbar {
+  display: none;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.total {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

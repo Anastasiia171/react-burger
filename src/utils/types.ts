@@ -12,6 +12,7 @@ export interface Ingredient {
     image_large: string;
     __v: number;
     uniqueId?: string;
+    quantity: number
 }
 
 export interface IngredientsState {
@@ -31,10 +32,7 @@ export interface CurrentIngredientState {
   }
 
 
-  export interface Order {
-    number: number;
-  }
-  
+
 export interface OrderState {
     order: Order | null;
     status: 'idle' | 'loading' | 'succeeded' | 'failed';
@@ -43,11 +41,14 @@ export interface OrderState {
 
 export interface OrderResponse {
     name: string;
-    order: {
-      number: number;
-    };
+    order: Order;
     success: boolean;
   }
+
+export interface FetchOrderResponse {
+  success: boolean;
+  orders: Order[];
+}
   
 export interface ErrorResponse {
     message: string;
@@ -72,5 +73,14 @@ export interface ErrorResponse {
     name?: string; 
   }
   
- 
+  export interface Order {
+    ingredients: string[];
+    _id: string;
+    status: string;
+    name: string;
+    number: number;
+    createdAt: string;
+    updatedAt: string;
+  }
+  
   

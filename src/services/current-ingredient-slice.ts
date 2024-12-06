@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CurrentIngredientState, Ingredient } from '../utils/types';
 
-
 const initialState: CurrentIngredientState = {
-  currentIngredient: null, 
+  currentIngredient: null,
 };
 
 const currentIngredientSlice = createSlice({
@@ -19,5 +18,6 @@ const currentIngredientSlice = createSlice({
   },
 });
 
-export const { setCurrentIngredient, clearCurrentIngredient } = currentIngredientSlice.actions;
+export const { setCurrentIngredient, clearCurrentIngredient } =
+  currentIngredientSlice.actions;
 export default currentIngredientSlice.reducer;

@@ -2,16 +2,17 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import cn from 'clsx';
 import { useAppDispatch, useAppSelector } from '../../services/hooks';
+import { RootState } from '../../services/store';
+import { Ingredient } from '../../utils/types';
+import OrderHistoryIngredientItem from '../../components/order-history-ingredient-item/order-history-ingredient-item';
 import { getOrder } from '../../services/order-slice';
-import styles from './order-details.module.css';
+import styles from './feed-details.module.css';
 import {
   CurrencyIcon,
   FormattedDate,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Ingredient } from '../../utils/types';
-import OrderHistoryIngredientItem from '../../components/order-history-ingredient-item/order-history-ingredient-item';
 
-const OrderDetailsPage = ({ className }: { className?: string }) => {
+const FeedDetailsPage = ({ className }: { className?: string }) => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
   const order = useAppSelector((state) => state.order.order);
@@ -40,35 +41,16 @@ const OrderDetailsPage = ({ className }: { className?: string }) => {
   }, new Map<string, { ingredient: Ingredient; quantity: number }>());
 
   const totalPrice = Array.from(ingredientMap.values()).reduce(
-    (total, { ingredient, quantity }) => {
-      const isBun = ingredient.type === 'bun';
-      return total + ingredient.price * (isBun ? 2 : quantity);
-    },
+    (total, { ingredient, quantity }) => total + ingredient.price * quantity,
     0,
   );
 
-  const statusText =
-    {
-      done: 'Выполнен',
-      pending: 'Готовится',
-      canceled: 'Отменен',
-    }[order.status] || 'Неизвестен';
-
   return (
     <div className={cn(styles.wrapper, className)}>
+      <h1>#{order.number}</h1>
       <div className={styles.header}>
-        <h1>#{order.number}</h1>
+        <h2 className="text text_type_main-medium mb-2">{order.name}</h2>
       </div>
-
-      <div className={styles.info}>
-        <h2 className="text text_type_main-medium">{order.name}</h2>
-        <span
-          className={`${styles.status} text text_type_main-default text_color_success`}
-        >
-          {statusText}
-        </span>
-      </div>
-
       <h3>Состав:</h3>
       <div className={styles.ingredients}>
         {Array.from(ingredientMap.values()).map(({ ingredient, quantity }) => (
@@ -76,12 +58,11 @@ const OrderDetailsPage = ({ className }: { className?: string }) => {
             key={ingredient._id}
             image={ingredient.image}
             name={ingredient.name}
-            quantity={ingredient.type === 'bun' ? 2 : quantity}
+            quantity={quantity}
             price={ingredient.price}
           />
         ))}
       </div>
-
       <div className={styles.footer}>
         <FormattedDate
           className="text text_type_main-default text_color_inactive"
@@ -96,4 +77,4 @@ const OrderDetailsPage = ({ className }: { className?: string }) => {
   );
 };
 
-export default OrderDetailsPage;
+export default FeedDetailsPage;

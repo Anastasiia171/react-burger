@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FORGOT_PASSWORD } from '../../utils/constants';
 import { request } from '../../utils/apiUtils';
 import { setPasswordResetRequested } from '../../services/auth-slice';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../services/hooks';
 
 
 const FotgotPasswordPage: React.FC = () => { 
@@ -13,7 +13,7 @@ const FotgotPasswordPage: React.FC = () => {
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState('');
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);

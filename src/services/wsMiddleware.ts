@@ -1,6 +1,6 @@
 import { Middleware } from '@reduxjs/toolkit';
-import { SetOrdersFull } from './feed-orders-slice';
-import { SetOrdersPersonal } from './history-orders-slice';
+import { SetOrdersFull } from './feed-orders/feed-orders-slice';
+import { SetOrdersPersonal } from './history-orders/history-orders-slice';
 import { getAccessToken } from '../utils/auth-tokens';
 
 interface Props {

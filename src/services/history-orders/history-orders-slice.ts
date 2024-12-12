@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Order } from '../utils/types';
+import { Order } from '../../utils/types';
 
-interface HistoryOrdersState {
+export interface HistoryOrdersState {
   orders: Order[];
 }
 
-const initialState: HistoryOrdersState = {
+export const initialState: HistoryOrdersState = {
   orders: [],
 };
 

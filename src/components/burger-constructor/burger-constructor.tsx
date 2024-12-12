@@ -10,14 +10,14 @@ import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 
 import { RootState } from '../../services/store';
-import { placeOrder, clearOrder } from '../../services/order-slice';
+import { placeOrder, clearOrder } from '../../services/order-slice/order-slice';
 import {
   addIngredient,
   removeIngredient,
   moveIngredient,
   clearConstructor,
-} from '../../services/burger-constructor-slice';
-import { decrementIngredientCount } from '../../services/ingredients-slice';
+} from '../../services/burger-constructor/burger-constructor-slice';
+import { decrementIngredientCount } from '../../services/ingredients-slice/ingredients-slice';
 import { Ingredient } from '../../utils/types';
 import { useNavigate } from 'react-router-dom';
 import { getAccessToken } from '../../utils/auth-tokens';
@@ -57,7 +57,7 @@ const BurgerConstructor: React.FC = () => {
 
   const handleOpenModal = () => {
     if (!token) {
-      navigate('/login');
+      navigate('/react-burger/login');
       return;
     }
 
@@ -73,7 +73,7 @@ const BurgerConstructor: React.FC = () => {
       .unwrap()
       .then(() => setModalOpen(true))
       .catch((error) => console.error('Ошибка при оформлении заказа:', error))
-      .finally(() => setLoading(false)); // Выключаем лоадер
+      .finally(() => setLoading(false));
   };
 
   const handleCloseModal = () => {
@@ -103,6 +103,7 @@ const BurgerConstructor: React.FC = () => {
     <section
       ref={dropRef}
       className={`${styles.constructorContainer} ${isOver ? styles.isOver : ''}`}
+      data-cy="constructor"
     >
       {bun && (
         <BurgerConstructorItem
@@ -110,10 +111,14 @@ const BurgerConstructor: React.FC = () => {
           isLocked={true}
           type="top"
           className="ml-6 mb-4"
+          data-cy="bun-top"
         />
       )}
 
-      <div className={styles.ingredientsContainer}>
+      <div
+        className={styles.ingredientsContainer}
+        data-cy="ingredients-container"
+      >
         {burgerIngredients.map((item, index) => (
           <BurgerConstructorItem
             key={item.uniqueId}
@@ -121,6 +126,7 @@ const BurgerConstructor: React.FC = () => {
             item={item}
             moveIngredient={moveIngredientHandler}
             handleRemove={() => handleRemoveIngredient(item.uniqueId, item._id)}
+            data-cy={`ingredient-${item._id}`}
           />
         ))}
       </div>
@@ -131,11 +137,12 @@ const BurgerConstructor: React.FC = () => {
           isLocked={true}
           type="bottom"
           className="ml-6 mt-4"
+          data-cy="bun-bottom"
         />
       )}
 
-      <div className={`${styles.footer} pt-4 pb-4`}>
-        <div className={styles.totalPrice}>
+      <div className={`${styles.footer} pt-4 pb-4`} data-cy="footer">
+        <div className={styles.totalPrice} data-cy="total-price">
           <span className="text text_type_digits-medium">{totalPrice}</span>
           <CurrencyIcon type="primary" />
         </div>
@@ -145,6 +152,7 @@ const BurgerConstructor: React.FC = () => {
           htmlType="button"
           onClick={handleOpenModal}
           disabled={!bun}
+          data-cy="order-button"
         >
           Оформить заказ
         </Button>
@@ -156,7 +164,7 @@ const BurgerConstructor: React.FC = () => {
         </Modal>
       )}
 
-      {isLoading && <Loader />}
+      {isLoading && <Loader data-cy="loader" />}
     </section>
   );
 };

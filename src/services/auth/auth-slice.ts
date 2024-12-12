@@ -1,21 +1,21 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { authRequest, request } from '../utils/apiUtils';
-import { UserResponse, UserData, ErrorResponse, User } from '../utils/types';
+import { authRequest, request } from '../../utils/apiUtils';
+import { UserResponse, UserData, ErrorResponse, User } from '../../utils/types';
 import {
   REGISTER_URL,
   LOGIN_URL,
   TOKEN_URL,
   LOGOUT_URL,
   GET_USER,
-} from '../utils/constants';
+} from '../../utils/constants';
 import {
   removeAccessToken,
   removeRefreshToken,
   setAccessToken,
   setRefreshToken,
-} from '../utils/auth-tokens';
+} from '../../utils/auth-tokens';
 
-interface AuthState {
+export interface AuthState {
   user: User | null;
   token: string | null;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
@@ -25,7 +25,7 @@ interface AuthState {
   isUserLoading: boolean;
 }
 
-const initialState: AuthState = {
+export const initialState: AuthState = {
   user: null,
   token: null,
   status: 'idle',

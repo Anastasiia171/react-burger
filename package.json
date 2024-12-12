@@ -2,13 +2,12 @@
   "name": "react-burger",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Anastasiia171.github.io/react-burger",
   "type": "module",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
     "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
     "@types/node": "^16.18.111",
     "@types/react": "^18.3.9",
     "@types/react-dom": "^18.3.0",
@@ -34,7 +33,11 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": []
@@ -52,11 +55,22 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-typescript": "^7.26.0",
+    "@testing-library/react": "^16.1.0",
+    "@types/jest": "^29.5.14",
     "@types/js-cookie": "^3.0.6",
+    "babel-jest": "^29.7.0",
+    "cypress": "^13.16.1",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard-with-typescript": "^43.0.1",
     "eslint-plugin-prettier": "^5.2.1",
-    "prettier": "^3.4.2"
+    "fetch-mock": "^12.2.0",
+    "gh-pages": "^6.2.0",
+    "jest": "^27.5.1",
+    "prettier": "^3.4.2",
+    "redux-mock-store": "^1.5.5"
   }
 }

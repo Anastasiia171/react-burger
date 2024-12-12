@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../services/hooks';
 import { RootState } from '../../services/store';
 import { Ingredient } from '../../utils/types';
 import OrderHistoryIngredientItem from '../../components/order-history-ingredient-item/order-history-ingredient-item';
-import { getOrder } from '../../services/order-slice';
+import { getOrder } from '../../services/order-slice/order-slice';
 import styles from './feed-details.module.css';
 import {
   CurrencyIcon,

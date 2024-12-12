@@ -4,7 +4,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import OrderHistoryItem from '../../components/order-history-item/order-history-item';
 import styles from './order-history.module.css';
 import { RootState } from '../../services/store';
-import { connect, disconnect } from '../../services/history-orders-slice';
+import {
+  connect,
+  disconnect,
+} from '../../services/history-orders/history-orders-slice';
 import { Ingredient } from '../../utils/types';
 
 const OrderHistoryPage: React.FC = () => {
@@ -23,7 +26,7 @@ const OrderHistoryPage: React.FC = () => {
   }, [dispatch]);
 
   const handleOrderClick = (orderNumber: string) => {
-    navigate(`/profile/orders/${orderNumber}`, {
+    navigate(`/react-burger/profile/orders/${orderNumber}`, {
       state: { backgroundLocation: location },
     });
   };

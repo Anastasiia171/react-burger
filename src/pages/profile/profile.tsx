@@ -8,7 +8,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './profile.module.css';
 import { AppDispatch, RootState } from '../../services/store';
-import { logoutUser, updateUser } from '../../services/auth-slice';
+import { logoutUser, updateUser } from '../../services/auth/auth-slice';
 import { User } from '../../utils/types';
 
 const ProfilePage: React.FC = () => {
@@ -38,7 +38,7 @@ const ProfilePage: React.FC = () => {
   const handleLogout = () => {
     dispatch(logoutUser())
       .unwrap()
-      .then(() => navigate('/login'))
+      .then(() => navigate('/react-burger/login'))
       .catch(console.error);
   };
 
@@ -63,7 +63,7 @@ const ProfilePage: React.FC = () => {
     <div className={`${styles.wrapper} mt-20`}>
       <nav className={styles.navigation}>
         <NavLink
-          to="/profile"
+          to="/react-burger/profile"
           end
           className={({ isActive }) =>
             `${styles.link} text text_type_main-medium ${isActive ? 'text_color_primary' : 'text_color_inactive'}`
@@ -72,7 +72,7 @@ const ProfilePage: React.FC = () => {
           Профиль
         </NavLink>
         <NavLink
-          to="/profile/orders"
+          to="/react-burger/profile/orders"
           className={({ isActive }) =>
             `${styles.link} text text_type_main-medium ${isActive ? 'text_color_primary' : 'text_color_inactive'}`
           }
@@ -80,7 +80,7 @@ const ProfilePage: React.FC = () => {
           История заказов
         </NavLink>
         <NavLink
-          to="/logout"
+          to="/react-burger/logout"
           className={({ isActive }) =>
             `${styles.link} text text_type_main-medium ${isActive ? 'text_color_primary' : 'text_color_inactive'}`
           }
@@ -96,7 +96,7 @@ const ProfilePage: React.FC = () => {
         </p>
       </nav>
       <div className={styles.content}>
-        {location.pathname === '/profile' && (
+        {location.pathname === '/react-burger/profile' && (
           <div>
             <div className={styles.form}>
               <Input

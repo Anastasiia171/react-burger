@@ -23,9 +23,9 @@ const AppHeader: React.FC<AppHeaderProps> = ({ className }) => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname.startsWith('/profile')) {
+    if (location.pathname.startsWith('/react-burger/profile')) {
       setIsActive('Личный кабинет');
-    } else if (location.pathname.startsWith('/feed')) {
+    } else if (location.pathname.startsWith('/react-burger/feed')) {
       setIsActive('Лента заказов');
     } else {
       setIsActive('Конструктор');
@@ -45,7 +45,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ className }) => {
             text="Конструктор"
             isActive={isActive === 'Конструктор'}
             setActive={() => {
-              navigate('/');
+              navigate('/react-burger');
             }}
           />
           <NavBarItem
@@ -57,13 +57,13 @@ const AppHeader: React.FC<AppHeaderProps> = ({ className }) => {
             text="Лента заказов"
             isActive={isActive === 'Лента заказов'}
             setActive={() => {
-              navigate('/feed');
+              navigate('/react-burger/feed');
             }}
           />
         </ul>
         <div
           className={`${styles.logo}`}
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/react-burger')}
           style={{ cursor: 'pointer' }}
         >
           <Logo />
@@ -78,7 +78,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ className }) => {
             text="Личный кабинет"
             isActive={isActive === 'Личный кабинет'}
             setActive={() => {
-              navigate('/profile');
+              navigate('/react-burger/profile');
             }}
           />
         </ul>

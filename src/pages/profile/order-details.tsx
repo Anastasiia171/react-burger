@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import cn from 'clsx';
 import { useAppDispatch, useAppSelector } from '../../services/hooks';
-import { getOrder } from '../../services/order-slice';
+import { getOrder } from '../../services/order-slice/order-slice';
 import styles from './order-details.module.css';
 import {
   CurrencyIcon,

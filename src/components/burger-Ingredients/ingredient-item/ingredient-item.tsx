@@ -8,7 +8,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Ingredient } from '../../../utils/types';
 
-import { incrementIngredientCount } from '../../../services/ingredients-slice';
+import { incrementIngredientCount } from '../../../services/ingredients-slice/ingredients-slice';
 import { useAppDispatch, useAppSelector } from '../../../services/hooks';
 
 interface IngredientItemProps {

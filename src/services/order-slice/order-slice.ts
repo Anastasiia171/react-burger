@@ -4,9 +4,9 @@ import {
   FetchOrderResponse,
   OrderResponse,
   OrderState,
-} from '../utils/types';
-import { ORDER_URL } from '../utils/constants';
-import { authRequest } from '../utils/apiUtils';
+} from '../../utils/types';
+import { ORDER_URL } from '../../utils/constants';
+import { authRequest } from '../../utils/apiUtils';
 
 export const placeOrder = createAsyncThunk<
   OrderResponse,
@@ -40,7 +40,7 @@ export const getOrder = createAsyncThunk<
   return data;
 });
 
-const initialState: OrderState = {
+export const initialState: OrderState = {
   order: null,
   status: 'idle',
   error: null,

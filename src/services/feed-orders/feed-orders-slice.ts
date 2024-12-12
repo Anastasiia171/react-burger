@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Order } from '../utils/types';
+import { Order } from '../../utils/types';
 
 export interface FeedOrdersState {
   orders: Order[];
@@ -7,7 +7,7 @@ export interface FeedOrdersState {
   totalToday: number;
 }
 
-const initialState: FeedOrdersState = {
+export const initialState: FeedOrdersState = {
   orders: [],
   total: 0,
   totalToday: 0,

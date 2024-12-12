@@ -9,16 +9,12 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import IngredientItem from './ingredient-item/ingredient-item';
 import styles from './burger-ingredients.module.css';
-import IngredientDetails from '../ingredient-details/ingredient-details';
-import Modal from '../modal/modal';
 import { useAppDispatch, useAppSelector } from '../../services/hooks';
-import { RootState } from '../../services/store';
 import { Ingredient } from '../../utils/types';
-import { fetchIngredients } from '../../services/ingredients-slice';
 import {
   setCurrentIngredient,
   clearCurrentIngredient,
-} from '../../services/current-ingredient-slice';
+} from '../../services/current-ingredient/current-ingredient-slice';
 
 const BurgerIngredients: React.FC = () => {
   const [current, setCurrent] = useState('Булки');
@@ -29,9 +25,6 @@ const BurgerIngredients: React.FC = () => {
   const { ingredients, status, error } = useAppSelector(
     (state) => state.ingredients,
   );
-  const currentIngredient = useAppSelector(
-    (state) => state.currentIngredient.currentIngredient,
-  );
 
   const bunsRef = useRef<HTMLHeadingElement>(null);
   const saucesRef = useRef<HTMLHeadingElement>(null);
@@ -40,7 +33,7 @@ const BurgerIngredients: React.FC = () => {
 
   const handleIngredientClick = (ingredient: Ingredient) => {
     dispatch(setCurrentIngredient(ingredient));
-    navigate(`/ingredients/${ingredient._id}`, {
+    navigate(`/react-burger/ingredients/${ingredient._id}`, {
       state: { backgroundLocation: location },
     });
   };
@@ -143,7 +136,11 @@ const BurgerIngredients: React.FC = () => {
         </h2>
         <div className={styles.ingredientsList}>
           {buns.map((item) => (
-            <div onClick={() => handleIngredientClick(item)} key={item._id}>
+            <div
+              data-cy={`ingredient-${item._id}`}
+              onClick={() => handleIngredientClick(item)}
+              key={item._id}
+            >
               <IngredientItem item={item} />
             </div>
           ))}
@@ -154,7 +151,11 @@ const BurgerIngredients: React.FC = () => {
         </h2>
         <div className={styles.ingredientsList}>
           {sauces.map((item) => (
-            <div onClick={() => handleIngredientClick(item)} key={item._id}>
+            <div
+              data-cy={`ingredient-${item._id}`}
+              onClick={() => handleIngredientClick(item)}
+              key={item._id}
+            >
               <IngredientItem item={item} />
             </div>
           ))}
@@ -165,7 +166,11 @@ const BurgerIngredients: React.FC = () => {
         </h2>
         <div className={styles.ingredientsList}>
           {fillings.map((item) => (
-            <div onClick={() => handleIngredientClick(item)} key={item._id}>
+            <div
+              data-cy={`ingredient-${item._id}`}
+              onClick={() => handleIngredientClick(item)}
+              key={item._id}
+            >
               <IngredientItem item={item} />
             </div>
           ))}

@@ -6,7 +6,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './login.module.css';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { loginUser } from '../../services/auth-slice';
+import { loginUser } from '../../services/auth/auth-slice';
 import { AppDispatch, RootState } from '../../services/store';
 import { useAppDispatch, useAppSelector } from '../../services/hooks';
 
@@ -30,7 +30,7 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     const result = await dispatch(loginUser({ email, password }));
     if (loginUser.fulfilled.match(result)) {
-      const redirectTo = location.state?.from?.pathname || '/';
+      const redirectTo = location.state?.from?.pathname || '/react-burger';
       navigate(redirectTo);
     }
   };
@@ -67,10 +67,11 @@ const LoginPage: React.FC = () => {
       <div className={`${styles.bottomLinks} mt-20`}>
         <p className="text text_type_main-default text_color_inactive">
           Вы — новый пользователь?{' '}
-          <Link to="/register">Зарегистрироваться</Link>
+          <Link to="/react-burger/register">Зарегистрироваться</Link>
         </p>
         <p className="text text_type_main-default text_color_inactive">
-          Забыли пароль? <Link to="/forgot-password">Восстановить пароль</Link>
+          Забыли пароль?{' '}
+          <Link to="/react-burger/forgot-password">Восстановить пароль</Link>
         </p>
       </div>
     </div>

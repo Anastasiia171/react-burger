@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './root-reducer';
 import { wsMiddlewareWrapper } from './wsMiddleware';
-import { setOrders as setOrdersFull } from './feed-orders-slice';
+import { setOrders as setOrdersFull } from './feed-orders/feed-orders-slice';
 import { WS_ORDERS_URL, WS_USER_ORDERS_URL } from '../utils/constants';
 
-import { setOrders as setOrdersUser } from './history-orders-slice';
+import { setOrders as setOrdersUser } from './history-orders/history-orders-slice';
 
 const store = configureStore({
   reducer: rootReducer,
